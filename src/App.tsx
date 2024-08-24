@@ -1,7 +1,10 @@
 import React from 'react'
+import Test from './Test'
 
 export default function App() {
   return (
-    <div className="App">App</div>
+    <div>
+      <Test />
+    </div>
   ) 
 }
