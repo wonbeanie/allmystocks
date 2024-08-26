@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require("path");
 const webpack = require('webpack');
+const proxyConfig = require("./proxyConfig");
 
 module.exports = (argv) => {
   const prod = argv.mode === "production";
@@ -17,6 +18,7 @@ module.exports = (argv) => {
     devServer: {
       port: 3000,
       hot: true,
+      proxy : proxyConfig
     },
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx"],

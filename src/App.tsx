@@ -1,21 +1,18 @@
-import React from 'react'
-import Test from './Test'
-import Counter from './components/Counter'
-import { useAppSelector } from './hooks';
-import { selectCount } from './store/counter';
 import StockState from './screens/stockstate';
 import Financial from './screens/financial';
 import StockHistory from './screens/stockhistory';
 import Layout from './screens/layout';
+import Counter from './components/Counter';
 
 export default function App() {
 
   return (
     <div>
-      <StockState />
+      <Counter />
+      {/* <StockState />
       <Financial />
       <StockHistory />
-      <Layout />
+      <Layout /> */}
     </div>
   ) 
 }
