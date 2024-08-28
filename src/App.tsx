@@ -10,9 +10,6 @@ import DataSetModal from './components/screens/layout/DataSetModal';
 export default function App() {
     return (
         <div css={container}>
-            <Modal>
-                <DataSetModal />
-            </Modal>
             <Layout>
                 <StockState />
             </Layout>
