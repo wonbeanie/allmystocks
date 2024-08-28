@@ -9,3 +9,7 @@ export const container = css`
 export const marginBottom = css`
     margin-bottom : 10px;
 `;
+
+export const textCenter = css`
+    text-align: center;
+`;
