@@ -10,8 +10,8 @@ export default function App() {
         <div css={container}>
             <Layout>
                 {/* <StockState /> */}
-                <Financial />
-                {/* <StockHistory /> */}
+                {/* <Financial /> */}
+                <StockHistory />
             </Layout>
         </div>
     ) 
