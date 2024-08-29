@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 
 export const container = css`
     border : 1px solid silver;
-    width: 800px;
+    max-width: 500px;
     margin : 0 auto;
 `;
 

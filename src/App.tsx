@@ -13,10 +13,9 @@ export default function App() {
             <Layout>
                 <StockState />
             </Layout>
-
             {/* <StockState /> */}
-            {/* <Financial />
-            <StockHistory /> */}
+            {/* <Financial /> */}
+            {/* <StockHistory /> */}
         </div>
     ) 
 }
