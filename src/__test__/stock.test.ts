@@ -1,64 +1,63 @@
+import { filterData, initData } from "./testData";
+
 describe('데이터 파일 테스트', () => {
-    it('csv 파일 불러오기', () => {
-        // csv 파일 불러오기 함수
-        // csv 데이터 구조 검증
-        expect(3 + 4).toBe(7);
-    });
 
-    it('필요없는 데이터 삭제', () => {
-        //csv 데이터 리스트 선언
-        //거래유형, 상세내용 기준으로 데이터 삭제하는 함수
-        //필터가 되었는지 리스트 확인
+    describe('초기 데이터 필터', ()=>{
+        let dataList = [];
 
-        const name = 'yuds';
-        expect(name).toBe('yuds');
-    });
+        beforeAll(()=>{
+            dataList = initData;
+        });
+    
+        it('거래 유형을 기준으로 데이터 삭제', () => {
+            //csv 데이터 리스트 선언
+            //거래유형, 상세내용 기준으로 데이터 삭제하는 함수
+            //필터가 되었는지 리스트 확인
+    
+            //임시
+            const tradeTypeFilter = jest.fn(()=>{
+                return [];
+            })
+    
+            dataList = tradeTypeFilter();
+    
+            expect(dataList).toEqual([]);
+        });
+    
+        it('상세내용을 기준으로 데이터 삭제', () => {
+            //임시
+            const detailContextFilter = jest.fn(()=>{
+                return [];
+            })
+    
+            dataList = detailContextFilter();
+    
+            expect(dataList).toEqual([]);
+        });
+        
+    })
 
     describe('사이트에서 사용하는 데이터로 변환', () => {
         //csv 데이터 리스트 선언
+        let dataList = filterData;
+        let result = {};
 
-        it('총 투입 금액 검증',()=>{
-            //총 투입 금액 변환 함수
-        });
 
-        it('현 주식 비율 검증',()=>{
-            //현 주식 비율 변환 함수
-        });
+        const roofFilterUseData = jest.fn((dataList : any[])=>{
+            return {};
+        })
 
-        it('총 순이익 검증',()=>{
-            //총 순이익 변환 함수
-        });
+        //데이터 돌면서 변환하는 함수
+        result = roofFilterUseData(dataList);
 
-        it('총 투입 금액 검증',()=>{
-            //총 투입 금액 변환 함수
-        });
-
-        it('최초 구매 시기 검증',()=>{
-            //최초 구매 시기 변환 함수
-        });
-
-        it('매수량 검증',()=>{
-            //매수량 변환 함수
-        });
-
-        it('보유기간 검증',()=>{
-            //보유기간 변환 함수
-        });
-
+        //사용하는 데이터로 변환데이터가 정상적으로 변환됬는지 검증
         it('평단가 검증',()=>{
-            //평단가 변환 함수
+            //루프돌면서 단가 값 저장하고 나중에 매수량으로 평균
         });
 
         it('평균 배당금 검증',()=>{
-            //평균 배당금 변환 함수
+            //루프돌면서 배당금 값 저장하고 나중에 평균 구하면됨
         });
-
-        it('주식 내역 검증',()=>{
-            //주식 내역 변환 함수
-        });
-
-        const name = 'yuds';
-        expect(name).toBe('yuds');
     });
 
     it('모든 csv 데이터 합치기', () => {
