@@ -28,6 +28,7 @@ const Container = styled.div`
 `;
 
 const Box = styled.div`
+    background-color : #ffffff;
     position: relative;
     width : 500px;
     min-height : 100px;
