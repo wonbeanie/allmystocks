@@ -1,9 +1,11 @@
-import { filterData, initData } from "./testData";
+import { tradeHistoryData } from "../modules/stock/stockTypes";
+import { tradeTypeFilter } from "../modules/stock/stock";
+import { filterData, initData, tradeTypeData } from "./testData";
 
 describe('데이터 파일 테스트', () => {
 
     describe('초기 데이터 필터', ()=>{
-        let dataList = [];
+        let dataList : tradeHistoryData[] = [];
 
         beforeAll(()=>{
             dataList = initData;
@@ -14,14 +16,9 @@ describe('데이터 파일 테스트', () => {
             //거래유형, 상세내용 기준으로 데이터 삭제하는 함수
             //필터가 되었는지 리스트 확인
     
-            //임시
-            const tradeTypeFilter = jest.fn(()=>{
-                return [];
-            })
+            dataList = tradeTypeFilter(dataList);
     
-            dataList = tradeTypeFilter();
-    
-            expect(dataList).toEqual([]);
+            expect(dataList).toEqual(tradeTypeData);
         });
     
         it('상세내용을 기준으로 데이터 삭제', () => {
