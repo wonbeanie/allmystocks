@@ -1,6 +1,9 @@
 import { tradeHistoryData } from "../modules/stock/stockTypes";
-import { tradeTypeFilter } from "../modules/stock/stock";
-import { filterData, initData, tradeTypeData } from "./testData";
+import { detailContextFilter, tradeTypeFilter } from "../modules/stock/stock";
+import filterData, {  } from "./testfiles/filterData";
+import initData from "./testfiles/initData";
+import tradeTypeData from "./testfiles/tradeTypeData";
+import detailContextData from "./testfiles/detailContextData";
 
 describe('데이터 파일 테스트', () => {
 
@@ -22,14 +25,9 @@ describe('데이터 파일 테스트', () => {
         });
     
         it('상세내용을 기준으로 데이터 삭제', () => {
-            //임시
-            const detailContextFilter = jest.fn(()=>{
-                return [];
-            })
+            dataList = detailContextFilter(dataList);
     
-            dataList = detailContextFilter();
-    
-            expect(dataList).toEqual([]);
+            expect(dataList).toEqual(detailContextData);
         });
         
     })
