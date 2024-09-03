@@ -1,5 +1,5 @@
-export default [
-    {
+export default {
+    "Financial Select Sector SPDR ETF US81369Y6059" : {
         stockName : "Financial Select Sector SPDR ETF US81369Y6059",
         financial : {
             totalPrice : "122",
@@ -35,7 +35,7 @@ export default [
             ]
         }
     },
-    {
+    "iShares Expanded Tech Sector ETF US4642875490" : {
         stockName : "iShares Expanded Tech Sector ETF US4642875490",
         financial : {
             totalPrice : "555",
@@ -80,7 +80,7 @@ export default [
             ]
         }
     },
-    {
+    "Invesco NASDAQ 100 ETF US46138G6492" : {
         stockName : "Invesco NASDAQ 100 ETF US46138G6492",
         financial : {
             totalPrice : "1886",
@@ -134,7 +134,7 @@ export default [
             ]
         }
     },
-    {
+    "Global X Robotcs Artificial Intellig ETF US37954Y7159" : {
         stockName : "Global X Robotcs Artificial Intellig ETF US37954Y7159",
         financial : {
             totalPrice : "269",
@@ -170,7 +170,7 @@ export default [
             ]
         }
     },
-    {
+    "동서 026960" : {
         stockName : "동서 026960",
         financial : {
             totalPrice : "260,980",
@@ -215,7 +215,7 @@ export default [
             ]
         }
     },
-    {
+    "삼성전자우 005935" : {
         stockName : "삼성전자우 005935",
         financial : {
             totalPrice : "1,421,600",
@@ -259,59 +259,5 @@ export default [
                 }
             ]
         }
-    },
-    {
-        stockName : "삼성전자우 005935",
-        financial : {
-            totalPrice : "1,421,600",
-            buyFirstTime : "2023.03.17 (17:25:53)",
-            installmentSavingRate : "0",
-            depositsRate : "0",
-            totalReturn : "5,292",
-            totalDividend : "5,292"
-        },
-        stockState : {
-            totalPrice : "1,421,600",
-            profit : "0",
-            flatPrice : "64,250",
-            retentionTime : "1년 5개월",
-            amount : "22",
-            buyFirstTime : "2023.03.17 (17:25:53)",
-            currentPrice : "0"
-        },
-        stockHistory : {
-            totalPricePercent : "0",
-            totalReturn : "5,292",
-            currentPrice : "0",
-            history : [
-                {
-                    conclusionAmount : "5,292",
-                    historyProfit : "-",
-                    conclusionDate : "2023.07.08 (12:12:22)",
-                    unitPrice : "0",
-                    detailContext : "배당금",
-                    tradeType : "입금",
-                    quantity : "0"
-                },
-                {
-                    conclusionAmount : "127,600",
-                    historyProfit : "-",
-                    conclusionDate : "2023.05.05 (12:32:41)",
-                    unitPrice : "63,800",
-                    detailContext : "코스피매수",
-                    tradeType : "매수",
-                    quantity : "2"
-                },
-                {
-                    conclusionAmount : "1,294,000",
-                    historyProfit : "-",
-                    conclusionDate : "2023.03.17 (17:25:53)",
-                    unitPrice : "64,700",
-                    detailContext : "코스피매수",
-                    tradeType : "매수",
-                    quantity : "20"
-                }
-            ]
-        }
-    },
-]
+    }
+}
