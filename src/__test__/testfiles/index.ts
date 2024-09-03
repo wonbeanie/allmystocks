@@ -1,11 +1,4 @@
-import { detailContextData } from "./detailContextData";
-import filterData from "./filterData";
-import initData from "./initData";
-import tradeTypeData from "./tradeTypeData";
-
-export default {
-    initData,
-    tradeTypeData,
-    detailContextData,
-    filterData
-}
+export {default as detailContextData} from "./detailContextData";
+export {default as filterData} from "./filterData";
+export {default as initData} from "./initData";
+export {default as tradeTypeData} from "./tradeTypeData";
