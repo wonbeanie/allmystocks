@@ -13,7 +13,7 @@ export default {
             totalPrice : "122",
             profit : "0",
             flatPrice : "40",
-            retentionTime : "1년 2개월",
+            retentionTime : "1년 1개월",
             amount : "3",
             buyFirstTime : "2023.07.05 (12:56:55)",
             currentPrice : "0"
@@ -49,7 +49,7 @@ export default {
             totalPrice : "555",
             profit : "0",
             flatPrice : "92",
-            retentionTime : "2년 10개월",
+            retentionTime : "1년 6개월",
             amount : "3",
             buyFirstTime : "2023.02.15 (11:23:52)",
             currentPrice : "0"
@@ -83,7 +83,7 @@ export default {
     "Invesco NASDAQ 100 ETF US46138G6492" : {
         stockName : "Invesco NASDAQ 100 ETF US46138G6492",
         financial : {
-            totalPrice : "1886",
+            totalPrice : "1,886",
             buyFirstTime : "2023.04.24 (11:34:56)",
             installmentSavingRate : "0",
             depositsRate : "0",
@@ -91,10 +91,10 @@ export default {
             totalDividend : "0"
         },
         stockState : {
-            totalPrice : "1886",
+            totalPrice : "1,886",
             profit : "0",
             flatPrice : "186",
-            retentionTime : "2년 8개월",
+            retentionTime : "1년 4개월",
             amount : "10",
             buyFirstTime : "2023.04.24 (11:34:56)",
             currentPrice : "0"
@@ -148,7 +148,7 @@ export default {
             totalPrice : "269",
             profit : "0",
             flatPrice : "26",
-            retentionTime : "2년 6개월",
+            retentionTime : "1년 2개월",
             amount : "10",
             buyFirstTime : "2023.06.29 (14:12:36)",
             currentPrice : "0"
