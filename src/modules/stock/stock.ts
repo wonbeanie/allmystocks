@@ -81,27 +81,29 @@ export const roofFilterUseData = (list : tradeHistoryData[]) : stocksDataList =>
     list.forEach((data, i)=>{
         const stockName = data["종목명"];
 
+        //종목별 값 초기화
         temp[stockName] = initStockList(temp, stockName);
 
+        //CSV 데이터을 redux에서 사용하게끔 포맷
         temp[stockName] = formatStockData(temp[stockName], data);
     });
 
-    // Object.keys(temp).forEach((data)=>{
-    //     console.log(temp[data].stockState.buyFirstTime);
-    // });
-
     Object.keys(temp).forEach((data)=>{
-        temp[data] = adjustmentStockData(temp[data], data);
+        //포맷된 데이터 세부 조정
+        temp[data] = adjustmentStockData(temp[data]);
     });
 
     return temp;
 }
 
-function adjustmentStockData(tempData : any, data : any){
+//포맷된 데이터 세부 조정
+function adjustmentStockData(tempData : stocksData){
     let result = {...tempData};
 
     let flatPriceTemp = "0";
+    let buyCount = 0;
     let historyTemp = [...tempData.stockHistory.history];
+    let totalReturnTemp = "0";
 
     //오름차순으로 정렬
     historyTemp.sort((f, s)=>{
@@ -118,6 +120,10 @@ function adjustmentStockData(tempData : any, data : any){
     historyTemp.forEach((data,i)=>{
         if(data.tradeType === filterTradeType["매수"]){
             buyPrice = data.unitPrice;
+
+            //평단가 계산을 위해 단가 전부 합치기
+            flatPriceTemp = calStringToNumber(buyPrice, flatPriceTemp);
+            buyCount += 1;
         }
 
         if(data.tradeType === filterTradeType["매도"]){
@@ -129,26 +135,45 @@ function adjustmentStockData(tempData : any, data : any){
             );
 
             //history의 손익 계산
-            historyTemp[i].historyProfit = calStringToNumber(
-                buyAmount, sellAmount, calculator.MINUS
+            let historyProfitTemp = calStringToNumber(
+                sellAmount, buyAmount, calculator.MINUS
             );
-        }
 
-        //평단가 계산을 위해 단가 전부 합치기
-        flatPriceTemp = calStringToNumber(data.unitPrice, flatPriceTemp);
+            historyTemp[i].historyProfit = historyProfitTemp;
+
+            //총 순수익을 위한 손익 합치기
+            totalReturnTemp = calStringToNumber(totalReturnTemp, historyProfitTemp);
+
+            buyPrice = "0";
+        }
     });
 
-    result.stockHistory.history = historyTemp;
+    //총 순수익을 위한 배당금 합치기
+    totalReturnTemp = calStringToNumber(totalReturnTemp, result.financial.totalDividend);
+
+    result.stockHistory.totalReturn = totalReturnTemp;
+    result.financial.totalReturn = totalReturnTemp;
+
+    //내림차순으로 정렬
+    result.stockHistory.history = historyTemp.sort((f, s)=>{
+        let fTime = formatDate(f.conclusionDate).getTime();
+        let sTime = formatDate(s.conclusionDate).getTime();
+        if(fTime < sTime) return 1;
+        if(fTime > sTime) return -1;
+        
+        return 0;
+    });
 
     //평단가 계산
     result.stockState.flatPrice = calStringToNumber(
-        flatPriceTemp, result.stockState.amount, calculator.DIVISION
+        flatPriceTemp, buyCount.toString(), calculator.DIVISION
     );
 
     return result;
 }
 
-function formatStockData(tempData : any, data : any){
+//CSV 데이터을 redux에서 사용하게끔 포맷
+function formatStockData(tempData : stocksData, data : tradeHistoryData){
     let result = {...tempData};
 
     const {
@@ -158,14 +183,11 @@ function formatStockData(tempData : any, data : any){
             totalDividend
         },
         stockState : {
-            amount,
-            retentionTime
-        },
-        stockHistory : {
-            history
+            amount
         }
     } = tempData;
 
+    //히스토리 객체 초기화
     const historyTemp = {
         conclusionAmount : data["거래금액"],
         historyProfit : "-",
@@ -177,8 +199,10 @@ function formatStockData(tempData : any, data : any){
     }
 
     if(data["거래유형"] === filterTradeType["매수"]){
-        //총 투입 금액 (주식)
-        result.financial.totalPrice = calStringToNumber(totalPrice, data["거래금액"]);
+        //총 투입 금액 (현 종목)
+        let totalPriceTemp = calStringToNumber(totalPrice, data["거래금액"]);
+        result.financial.totalPrice = totalPriceTemp;
+        result.stockState.totalPrice = totalPriceTemp;
 
         //최초 구매 시기
         //보유기간
@@ -188,7 +212,7 @@ function formatStockData(tempData : any, data : any){
             result.stockState.retentionTime = calDiffDate(data["거래일자"]);
         }
 
-        //매수량r
+        //매수량
         result.stockState.amount = calStringToNumber(amount,data["수량"]);
 
         //주식 내역
@@ -198,6 +222,8 @@ function formatStockData(tempData : any, data : any){
         });
     }
     else if(data["거래유형"] === filterTradeType["매도"]) {
+        result.stockState.amount = calStringToNumber(amount,data["수량"],calculator.MINUS);
+
         //주식 내역
         result.stockHistory.history.push({
             ...historyTemp,
@@ -205,11 +231,13 @@ function formatStockData(tempData : any, data : any){
         });
     }
     else if(data["거래유형"] === filterTradeType["입금"]){
+
+        //배당금 일시
         if(
             data["상세내용"] === filterDetailContext.ETF분배금입금 ||
             data["상세내용"] === filterDetailContext.배당금
         ){
-            result.financial.totalDividend += calStringToNumber(
+            result.financial.totalDividend = calStringToNumber(
                 totalDividend, data["거래금액"]
             );
         }
@@ -224,7 +252,8 @@ function formatStockData(tempData : any, data : any){
     return result;
 }
 
-function initStockList(temp : any, stockName : string){
+function initStockList(temp : stocksDataList, stockName : string){
+    //초기 데이터
     let initData : stocksData = {
         stockName : "",
         stockHistory : {
@@ -252,6 +281,7 @@ function initStockList(temp : any, stockName : string){
         }
     };
 
+    //새로운 종목일때
     if(!temp[stockName]){
         temp[stockName] = initData;
         temp[stockName].stockName = stockName;
@@ -259,21 +289,3 @@ function initStockList(temp : any, stockName : string){
 
     return temp[stockName];
 }
-
-//totalReturn
-//historyProfit
-function calHistoryProfit(history : History[]){
-
-    history.forEach((data)=>{
-        // if(data.)
-
-
-        // 화면 수정해야됨
-        //버그 수정
-        //먼저 정상적으로 출력되어야 할 데이터 만들고 다시 작업 시작
-    })
-}
-
-//전부 분리되어있어
-//json안에 속성명을 종목으로해서 묶은뒤에
-//종목별로 계산시작
