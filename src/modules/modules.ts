@@ -20,7 +20,7 @@ export function calStringToNumber(first : string, second : string, type : calcul
             break;
     }
 
-    return formatComma(result);
+    return formatComma(Math.floor(result));
 }
 
 export function calDiffDate(start ?: string, end ?: string){
