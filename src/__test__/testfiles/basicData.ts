@@ -42,7 +42,7 @@ export default {
             buyFirstTime : "2023.02.15 (11:23:52)",
             installmentSavingRate : "0",
             depositsRate : "0",
-            totalReturn : "482",
+            totalReturn : "48",
             totalDividend : "0"
         },
         stockState : {
@@ -56,12 +56,12 @@ export default {
         },
         stockHistory : {
             totalPricePercent : "0",
-            totalReturn : "482",
+            totalReturn : "48",
             currentPrice : "0",
             history : [
                 {
-                    conclusionAmount : "122",
-                    historyProfit : "482",
+                    conclusionAmount : "324",
+                    historyProfit : "48",
                     conclusionDate : "2023.07.04 (14:45:12)",
                     unitPrice : "108",
                     detailContext : "외화증권매도",
@@ -222,8 +222,8 @@ export default {
             buyFirstTime : "2023.03.17 (17:25:53)",
             installmentSavingRate : "0",
             depositsRate : "0",
-            totalReturn : "0",
-            totalDividend : "0"
+            totalReturn : "5,292",
+            totalDividend : "5,292"
         },
         stockState : {
             totalPrice : "1,421,600",
@@ -236,9 +236,18 @@ export default {
         },
         stockHistory : {
             totalPricePercent : "0",
-            totalReturn : "0",
+            totalReturn : "5,292",
             currentPrice : "0",
             history : [
+                {
+                    conclusionAmount : "5,292",
+                    historyProfit : "-",
+                    conclusionDate : "2023.07.08 (12:12:22)",
+                    unitPrice : "0",
+                    detailContext : "배당금",
+                    tradeType : "입금",
+                    quantity : "0"
+                },
                 {
                     conclusionAmount : "127,600",
                     historyProfit : "-",
