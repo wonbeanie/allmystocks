@@ -78,44 +78,11 @@ export const roofFilterUseData = (list : tradeHistoryData[]) : stocksDataList =>
 
     let temp : stocksDataList = {};
 
-    list.forEach(function(data, i){
+    list.forEach((data, i) => {
         const stockName = data["종목명"];
 
         //종목별 값 초기화
         temp[stockName] = initStockList(temp, stockName);
-
-        // let initData : stocksData = {
-        //     stockName : "",
-        //     stockHistory : {
-        //         totalPricePercent : "0",
-        //         totalReturn : "0",
-        //         currentPrice : "0",
-        //         history : []
-        //     },
-        //     financial : {
-        //         totalPrice : "0",
-        //         buyFirstTime : dateToString(new Date()),
-        //         installmentSavingRate : "0",
-        //         depositsRate : "0",
-        //         totalReturn : "0",
-        //         totalDividend : "0"
-        //     },
-        //     stockState : {
-        //         totalPrice : "0",
-        //         profit : "0",
-        //         flatPrice : "0",
-        //         retentionTime : "0",
-        //         amount : "0",
-        //         buyFirstTime : dateToString(new Date()),
-        //         currentPrice : "0"
-        //     }
-        // };
-    
-        // //새로운 종목일때
-        // if(!temp[stockName]){
-        //     temp[stockName] = initData;
-        //     temp[stockName].stockName = stockName;
-        // }
 
         //CSV 데이터을 redux에서 사용하게끔 포맷
         temp[stockName] = formatStockData(temp[stockName], data);
