@@ -13,7 +13,7 @@ export default {
             totalPrice : "122",
             profit : "0",
             flatPrice : "40",
-            retentionTime : "1년 1개월",
+            retentionTime : "1년 2개월",
             amount : "3",
             buyFirstTime : "2023.07.05 (12:56:55)",
             currentPrice : "0"

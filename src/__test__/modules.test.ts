@@ -18,7 +18,7 @@ describe("모듈 테스트",()=>{
         it("딱 1년",()=>{
             let data = calDiffDate('2023.07.08 (12:12:22)', '2024.08.08 (12:12:22)');
 
-            expect(data).toBe('1년');
+            expect(data).toBe('1년 1개월');
         })
 
         it("딱 31일",()=>{
