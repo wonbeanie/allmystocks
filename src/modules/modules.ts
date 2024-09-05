@@ -39,10 +39,15 @@ export function calDiffDate(start ?: string, end ?: string){
                 (e.getFullYear() - s.getFullYear())*12 + 
                 (e.getMonth() - s.getMonth()));
         }
-        if(e.getDate() < s.getDate()) {
+        else if(e.getDate() < s.getDate()) {
             diffMonths = Math.abs(
                 (e.getFullYear() - s.getFullYear())*12 + 
                 (e.getMonth() - s.getMonth())) - 1;
+        }
+        else {
+            diffMonths = Math.abs(
+                (e.getFullYear() - s.getFullYear())*12 + 
+                (e.getMonth() - s.getMonth())) ;
         }
 
         if(diffYears > 0){
