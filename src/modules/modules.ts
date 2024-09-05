@@ -26,6 +26,7 @@ export function calStringToNumber(first : string, second : string, type : calcul
 export function calDiffDate(start ?: string, end ?: string){
     let s = formatDate(start);
     let e = formatDate(end);
+
     let result = "";
     let diffDays = Math.ceil((e.getTime() - s.getTime()) / (1000 * 60 * 60 * 24));
     let diffMonths = 0;
@@ -51,11 +52,11 @@ export function calDiffDate(start ?: string, end ?: string){
         }
 
         if(diffYears > 0){
+            diffMonths -= diffYears * 12;
             if(diffMonths === 0){
                 result = `${diffYears}년`;
             }
             else {
-                diffMonths -= diffYears * 12;
                 result = `${diffYears}년 ${diffMonths}개월`;
             }
         }

@@ -3,6 +3,21 @@ import { calculator } from "../modules/stock/stockTypes";
 
 describe("모듈 테스트",()=>{
     describe("날짜 차이 계산 함수",()=>{
+        //new Date()시 고정 시간 mock 생성
+        const mockDate = new Date('2024.08.05 (12:12:22)');
+
+        beforeEach(()=>{
+            jest.useFakeTimers({
+                now : mockDate
+            });
+
+            jest.setSystemTime(mockDate);
+        });
+
+        afterEach(() => {
+            jest.useRealTimers();
+        });
+
         it("년월 계산",()=>{
             let data = calDiffDate('2023.07.07 (12:12:22)', '2024.08.08 (12:12:22)');
 
@@ -16,9 +31,9 @@ describe("모듈 테스트",()=>{
         });
 
         it("딱 1년",()=>{
-            let data = calDiffDate('2023.07.08 (12:12:22)', '2024.08.08 (12:12:22)');
+            let data = calDiffDate('2023.07.08 (12:12:22)', '2024.07.08 (12:12:22)');
 
-            expect(data).toBe('1년 1개월');
+            expect(data).toBe('1년');
         })
 
         it("딱 31일",()=>{
@@ -33,14 +48,8 @@ describe("모듈 테스트",()=>{
             expect(data).toBe('1일');
         });
 
-        it("테스트",()=>{
-            let data = calDiffDate('2023.06.03 (14:12:36)','2024.09.04 (13:13:13)');
-
-            expect(data).toBe('1년 3개월');
-        });
-
-        it("테스트",()=>{
-            let data = calDiffDate('2023.06.28 (14:12:36)', '2024.09.04 (13:13:13)');
+        it("기준 날짜부터 현재까지",()=>{
+            let data = calDiffDate('2023.06.03 (14:12:36)');
 
             expect(data).toBe('1년 2개월');
         });

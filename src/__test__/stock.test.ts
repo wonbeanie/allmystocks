@@ -34,11 +34,27 @@ describe('데이터 파일 테스트', () => {
         //csv 데이터 리스트 선언
         let dataList = filterData;
         let result : stocksDataList = {};
+        //new Date()시 고정 시간 mock 생성
+        const mockDate = new Date('2024.09.05 (12:12:22)');
 
-        //데이터 돌면서 변환하는 함수
-        result = roofFilterUseData(dataList);
+        beforeEach(()=>{
+            jest.useFakeTimers({
+                now : mockDate
+            });
 
-        expect(result).toEqual(basicData);
+            jest.setSystemTime(mockDate);
+        });
+
+        afterEach(() => {
+            jest.useRealTimers();
+        });
+
+        it('basicData 검증',()=>{
+            //데이터 돌면서 변환하는 함수
+            result = roofFilterUseData(dataList);
+
+            expect(result).toEqual(basicData);
+        })
 
         //사용하는 데이터로 변환데이터가 정상적으로 변환됬는지 검증
         it('평단가 검증',()=>{
