@@ -252,10 +252,11 @@ function formatStockData(tempData : stocksData, data : tradeHistoryData){
     return result;
 }
 
-function initStockList(temp : stocksDataList, stockName : string){
+function initStockList(temp : stocksDataList, stockKey : string){
     //초기 데이터
     let initData : stocksData = {
         stockName : "",
+        stockCode : "",
         stockHistory : {
             totalPricePercent : "0",
             totalReturn : "0",
@@ -282,10 +283,13 @@ function initStockList(temp : stocksDataList, stockName : string){
     };
 
     //새로운 종목일때
-    if(!temp[stockName]){
-        temp[stockName] = initData;
-        temp[stockName].stockName = stockName;
+    if(!temp[stockKey]){
+        temp[stockKey] = initData;
+        let stockName = stockKey.split(" ");
+        let stockCode = stockName.pop() || "";
+        temp[stockKey].stockName = stockName.join(" ");
+        temp[stockKey].stockCode = stockCode;
     }
 
-    return temp[stockName];
+    return temp[stockKey];
 }

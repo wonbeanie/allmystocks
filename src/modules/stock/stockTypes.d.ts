@@ -41,6 +41,7 @@ export const enum filterDetailContext {
 
 export interface stocksData {
     stockName : string;
+    stockCode : string;
     stockHistory : stockHistory;
     financial : financial;
     stockState : stockState;
