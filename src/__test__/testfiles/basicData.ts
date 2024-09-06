@@ -1,7 +1,10 @@
+import { stocksDataList } from "../../modules/stock/stockTypes";
+
 export default {
     "Financial Select Sector SPDR ETF US81369Y6059" : {
         stockName : "Financial Select Sector SPDR ETF",
         stockCode : "US81369Y6059",
+        stockType : "US",
         financial : {
             totalPrice : "122",
             buyFirstTime : "2023.07.05 (12:56:55)",
@@ -39,6 +42,7 @@ export default {
     "iShares Expanded Tech Sector ETF US4642875490" : {
         stockName : "iShares Expanded Tech Sector ETF",
         stockCode : "US4642875490",
+        stockType : "US",
         financial : {
             totalPrice : "555",
             buyFirstTime : "2023.02.15 (11:23:52)",
@@ -85,6 +89,7 @@ export default {
     "Invesco NASDAQ 100 ETF US46138G6492" : {
         stockName : "Invesco NASDAQ 100 ETF",
         stockCode : "US46138G6492",
+        stockType : "US",
         financial : {
             totalPrice : "1,886",
             buyFirstTime : "2023.04.24 (11:34:56)",
@@ -140,6 +145,7 @@ export default {
     "Global X Robotcs Artificial Intellig ETF US37954Y7159" : {
         stockName : "Global X Robotcs Artificial Intellig ETF",
         stockCode : "US37954Y7159",
+        stockType : "US",
         financial : {
             totalPrice : "269",
             buyFirstTime : "2023.06.29 (14:12:36)",
@@ -177,6 +183,7 @@ export default {
     "동서 026960" : {
         stockName : "동서",
         stockCode : "026960",
+        stockType : "KR",
         financial : {
             totalPrice : "260,980",
             buyFirstTime : "2023.04.14 (15:54:42)",
@@ -223,6 +230,7 @@ export default {
     "삼성전자우 005935" : {
         stockName : "삼성전자우",
         stockCode : "005935",
+        stockType : "KR",
         financial : {
             totalPrice : "1,421,600",
             buyFirstTime : "2023.03.17 (17:25:53)",
@@ -275,4 +283,4 @@ export default {
             ]
         }
     }
-}
+} as stocksDataList;

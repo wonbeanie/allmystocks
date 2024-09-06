@@ -42,9 +42,15 @@ export const enum filterDetailContext {
 export interface stocksData {
     stockName : string;
     stockCode : string;
+    stockType : stockType;
     stockHistory : stockHistory;
     financial : financial;
     stockState : stockState;
+}
+
+export const enum stockType {
+    "US" = "US",
+    "KR" = "KR"
 }
 
 export interface stockHistory {

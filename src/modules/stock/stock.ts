@@ -1,5 +1,5 @@
 import { calDiffDate, calStringToNumber, dateToString, formatDate } from '../modules';
-import {calculator, filterDetailContext, filterTradeType, stocksData, stocksDataList, tradeHistoryData} from './stockTypes';
+import {calculator, filterDetailContext, filterTradeType, stocksData, stocksDataList, stockType, tradeHistoryData} from './stockTypes';
 
 export const tradeTypeFilter = (list : tradeHistoryData[]) : tradeHistoryData[] => {
 
@@ -257,6 +257,7 @@ function initStockList(temp : stocksDataList, stockKey : string){
     let initData : stocksData = {
         stockName : "",
         stockCode : "",
+        stockType : stockType.KR,
         stockHistory : {
             totalPricePercent : "0",
             totalReturn : "0",
@@ -289,7 +290,18 @@ function initStockList(temp : stocksDataList, stockKey : string){
         let stockCode = stockName.pop() || "";
         temp[stockKey].stockName = stockName.join(" ");
         temp[stockKey].stockCode = stockCode;
+        temp[stockKey].stockType = getStockType(stockCode);
     }
 
     return temp[stockKey];
+}
+
+function getStockType(code : string){
+    let type = code.slice(0,2);
+    switch (type) {
+        case stockType.US:
+            return stockType.US;
+        default:
+            return stockType.KR;
+    }
 }
