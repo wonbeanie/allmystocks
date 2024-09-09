@@ -21,19 +21,21 @@ export const calPriceToStockData = (
     });
 
     Object.keys(list).forEach((data)=>{
-        // list[data] = calTotalPricePercent(list[data], totalStocksPrice);
         let totalPriceTemp = list[data].financial.totalPrice
         
         if(list[data].stockType === stockType.US){
             totalPriceTemp = calStringToNumber(totalPriceTemp, exchangeRate, calculator.MULTIPLICATION);
         }
 
+        //소수점
         totalPriceTemp = calStringToNumber(totalPriceTemp, 100, calculator.MULTIPLICATION);
-        
+
+        //현 주식 비율 계산
         let pricePercentTemp = calStringToNumber(totalPriceTemp, totalStocksPrice, calculator.DIVISION);
 
         listTemp[data].stockHistory.totalPricePercent = cutPoint(pricePercentTemp, 2);
 
+        //현재 주식 가격
         let currentPriceTemp = formatComma(Number(delComma(priceList[data].stck_prpr)));
 
         listTemp[data].stockState.currentPrice = currentPriceTemp;
@@ -41,11 +43,4 @@ export const calPriceToStockData = (
     });
 
     return list;
-}
-
-function calTotalPricePercent(data : stocksData, totalStocksPrice : string) {
-    data.stockHistory.totalPricePercent = calStringToNumber(
-        data.financial.totalPrice, totalStocksPrice, calculator.DIVISION);
-
-    return data;
 }
