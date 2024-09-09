@@ -2,21 +2,22 @@ import { calDiffDate, calStringToNumber, dateToString, formatDate } from "../mod
 import { calculator } from "../modules/stock/stockTypes";
 
 describe("모듈 테스트",()=>{
+    //new Date()시 고정 시간 mock 생성
+    const mockDate = new Date('2024.08.05 (12:12:22)');
+
+    beforeEach(()=>{
+        jest.useFakeTimers({
+            now : mockDate
+        });
+
+        jest.setSystemTime(mockDate);
+    });
+
+    afterEach(() => {
+        jest.useRealTimers();
+    });
+
     describe("날짜 차이 계산 함수",()=>{
-        //new Date()시 고정 시간 mock 생성
-        const mockDate = new Date('2024.08.05 (12:12:22)');
-
-        beforeEach(()=>{
-            jest.useFakeTimers({
-                now : mockDate
-            });
-
-            jest.setSystemTime(mockDate);
-        });
-
-        afterEach(() => {
-            jest.useRealTimers();
-        });
 
         it("년월 계산",()=>{
             let data = calDiffDate('2023.07.07 (12:12:22)', '2024.08.08 (12:12:22)');
@@ -88,20 +89,6 @@ describe("모듈 테스트",()=>{
     });
 
     describe("csv 날짜 데이터를 Date 객체로 변환하는 함수",()=>{
-        const mockDate = new Date('2024.08.05 (12:12:22)');
-
-        beforeEach(()=>{
-            jest.useFakeTimers({
-                now : mockDate
-            });
-
-            jest.setSystemTime(mockDate);
-        });
-
-        afterEach(() => {
-            jest.useRealTimers();
-        });
-
         it("csv 데이터 변환",()=>{
             let data = formatDate('2023.07.08 (12:12:22)');
 
