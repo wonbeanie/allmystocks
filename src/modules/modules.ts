@@ -1,9 +1,9 @@
 import { calculator } from "./stock/stockTypes";
 
-export function calStringToNumber(first : string, second : string, type : calculator = calculator.PLUS){
+export function calStringToNumber(first : string | number, second : string | number, type : calculator = calculator.PLUS){
     let result = 0;
-    let f = Number(delComma(first));
-    let s = Number(delComma(second));
+    let f = typeof first === "string" ? Number(delComma(first)) : first;
+    let s = typeof second === "string" ? Number(delComma(second)) : second;
 
     switch (type) {
         case calculator.PLUS:
@@ -20,7 +20,12 @@ export function calStringToNumber(first : string, second : string, type : calcul
             break;
     }
 
-    return formatComma(Math.floor(result));
+    return formatComma(result);
+}
+
+export function cutPoint(num : string | number, digits : number = 0){
+    let n = typeof num === "string" ? Number(delComma(num)) : num;  
+    return formatComma(Math.floor(n * (10**digits)) / (10**digits));
 }
 
 export function calDiffDate(start ?: string, end ?: string){
@@ -81,10 +86,10 @@ export function dateToString(date : Date){
     return result.toISOString().replace("T", " ").split(".")[0].replace(/-/gi, ".");
 }
 
-function delComma(str : string){
+export function delComma(str : string){
     return str.replace(/,/gi,"");
 }
 
-function formatComma(str : number){
+export function formatComma(str : number){
     return str.toLocaleString();
 }

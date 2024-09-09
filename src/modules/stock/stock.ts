@@ -1,4 +1,4 @@
-import { calDiffDate, calStringToNumber, dateToString, formatDate } from '../modules';
+import { calDiffDate, calStringToNumber, cutPoint, dateToString, formatDate } from '../modules';
 import {calculator, filterDetailContext, filterTradeType, stocksData, stocksDataList, stockType, tradeHistoryData} from './stockTypes';
 
 export const tradeTypeFilter = (list : tradeHistoryData[]) : tradeHistoryData[] => {
@@ -165,8 +165,10 @@ function adjustmentStockData(tempData : stocksData){
     });
 
     //평단가 계산
-    result.stockState.flatPrice = calStringToNumber(
-        flatPriceTemp, buyCount.toString(), calculator.DIVISION
+    result.stockState.flatPrice = cutPoint(
+        calStringToNumber(
+            flatPriceTemp, buyCount.toString(), calculator.DIVISION
+        )
     );
 
     return result;
