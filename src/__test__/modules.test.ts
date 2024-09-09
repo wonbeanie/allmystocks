@@ -88,6 +88,20 @@ describe("모듈 테스트",()=>{
     });
 
     describe("csv 날짜 데이터를 Date 객체로 변환하는 함수",()=>{
+        const mockDate = new Date('2024.08.05 (12:12:22)');
+
+        beforeEach(()=>{
+            jest.useFakeTimers({
+                now : mockDate
+            });
+
+            jest.setSystemTime(mockDate);
+        });
+
+        afterEach(() => {
+            jest.useRealTimers();
+        });
+
         it("csv 데이터 변환",()=>{
             let data = formatDate('2023.07.08 (12:12:22)');
 
