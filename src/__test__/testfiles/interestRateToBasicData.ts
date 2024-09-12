@@ -8,8 +8,8 @@ export default {
         financial : {
             totalPrice : "122",
             buyFirstTime : "2023.07.05 (12:56:55)",
-            interestInstallmentSaving : "0",
-            interestDeposits : "0",
+            interestInstallmentSaving : "2.23",
+            interestDeposits : "4.11",
             totalReturn : "0",
             totalDividend : "0"
         },
@@ -46,8 +46,8 @@ export default {
         financial : {
             totalPrice : "555",
             buyFirstTime : "2023.02.15 (11:23:52)",
-            interestInstallmentSaving : "0",
-            interestDeposits : "0",
+            interestInstallmentSaving : "4.22",
+            interestDeposits : "7.78",
             totalReturn : "48",
             totalDividend : "0"
         },
@@ -93,8 +93,8 @@ export default {
         financial : {
             totalPrice : "1,886",
             buyFirstTime : "2023.04.24 (11:34:56)",
-            interestInstallmentSaving : "0",
-            interestDeposits : "0",
+            interestInstallmentSaving : "34.52",
+            interestDeposits : "63.55",
             totalReturn : "0",
             totalDividend : "0"
         },
@@ -149,8 +149,8 @@ export default {
         financial : {
             totalPrice : "269",
             buyFirstTime : "2023.06.29 (14:12:36)",
-            interestInstallmentSaving : "0",
-            interestDeposits : "0",
+            interestInstallmentSaving : "4.92",
+            interestDeposits : "9.06",
             totalReturn : "0",
             totalDividend : "0"
         },
@@ -187,8 +187,8 @@ export default {
         financial : {
             totalPrice : "260,980",
             buyFirstTime : "2023.04.14 (15:54:42)",
-            interestInstallmentSaving : "0",
-            interestDeposits : "0",
+            interestInstallmentSaving : "4,778.1",
+            interestDeposits : "8,795.02",
             totalReturn : "0",
             totalDividend : "0"
         },
@@ -234,8 +234,8 @@ export default {
         financial : {
             totalPrice : "1,421,600",
             buyFirstTime : "2022.03.17 (17:25:53)",
-            interestInstallmentSaving : "0",
-            interestDeposits : "0",
+            interestInstallmentSaving : "49,718.11",
+            interestDeposits : "91,515.72",
             totalReturn : "5,292",
             totalDividend : "5,292"
         },
