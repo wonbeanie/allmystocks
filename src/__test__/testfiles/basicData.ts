@@ -8,8 +8,8 @@ export default {
         financial : {
             totalPrice : "122",
             buyFirstTime : "2023.07.05 (12:56:55)",
-            installmentSavingRate : "0",
-            depositsRate : "0",
+            interestInstallmentSaving : "0",
+            interestDeposits : "0",
             totalReturn : "0",
             totalDividend : "0"
         },
@@ -46,8 +46,8 @@ export default {
         financial : {
             totalPrice : "555",
             buyFirstTime : "2023.02.15 (11:23:52)",
-            installmentSavingRate : "0",
-            depositsRate : "0",
+            interestInstallmentSaving : "0",
+            interestDeposits : "0",
             totalReturn : "48",
             totalDividend : "0"
         },
@@ -93,8 +93,8 @@ export default {
         financial : {
             totalPrice : "1,886",
             buyFirstTime : "2023.04.24 (11:34:56)",
-            installmentSavingRate : "0",
-            depositsRate : "0",
+            interestInstallmentSaving : "0",
+            interestDeposits : "0",
             totalReturn : "0",
             totalDividend : "0"
         },
@@ -149,8 +149,8 @@ export default {
         financial : {
             totalPrice : "269",
             buyFirstTime : "2023.06.29 (14:12:36)",
-            installmentSavingRate : "0",
-            depositsRate : "0",
+            interestInstallmentSaving : "0",
+            interestDeposits : "0",
             totalReturn : "0",
             totalDividend : "0"
         },
@@ -187,8 +187,8 @@ export default {
         financial : {
             totalPrice : "260,980",
             buyFirstTime : "2023.04.14 (15:54:42)",
-            installmentSavingRate : "0",
-            depositsRate : "0",
+            interestInstallmentSaving : "0",
+            interestDeposits : "0",
             totalReturn : "0",
             totalDividend : "0"
         },
@@ -233,9 +233,9 @@ export default {
         stockType : "KR",
         financial : {
             totalPrice : "1,421,600",
-            buyFirstTime : "2023.03.17 (17:25:53)",
-            installmentSavingRate : "0",
-            depositsRate : "0",
+            buyFirstTime : "2022.03.17 (17:25:53)",
+            interestInstallmentSaving : "0",
+            interestDeposits : "0",
             totalReturn : "5,292",
             totalDividend : "5,292"
         },
@@ -243,9 +243,9 @@ export default {
             totalPrice : "1,421,600",
             profit : "0",
             flatPrice : "64,250",
-            retentionTime : "1년 5개월",
+            retentionTime : "2년 5개월",
             amount : "22",
-            buyFirstTime : "2023.03.17 (17:25:53)",
+            buyFirstTime : "2022.03.17 (17:25:53)",
             currentPrice : "0"
         },
         stockHistory : {
@@ -274,7 +274,7 @@ export default {
                 {
                     conclusionAmount : "1,294,000",
                     historyProfit : "-",
-                    conclusionDate : "2023.03.17 (17:25:53)",
+                    conclusionDate : "2022.03.17 (17:25:53)",
                     unitPrice : "64,700",
                     detailContext : "코스피매수",
                     tradeType : "매수",

@@ -73,8 +73,8 @@ export interface history {
 export interface financial {
     totalPrice : string;
     buyFirstTime : string;
-    installmentSavingRate : string;
-    depositsRate : string;
+    interestInstallmentSaving : string;
+    interestDeposits : string;
     totalReturn : string;
     totalDividend : string;
 }

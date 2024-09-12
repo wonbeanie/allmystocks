@@ -1,4 +1,6 @@
-import { calDiffDate, calStringToNumber, cutPoint, dateToString, formatDate } from '../modules';
+import basicInfo from '../../__test__/testfiles/basicInfo';
+import { calDiffDate, calStringToNumber, cutPoint, dateToString, formatDate, historySort } from '../modules';
+import { sortType } from '../modulesType';
 import {calculator, filterDetailContext, filterTradeType, stocksData, stocksDataList, stockType, tradeHistoryData} from './stockTypes';
 
 export const tradeTypeFilter = (list : tradeHistoryData[]) : tradeHistoryData[] => {
@@ -106,14 +108,7 @@ function adjustmentStockData(tempData : stocksData){
     let totalReturnTemp = "0";
 
     //오름차순으로 정렬
-    historyTemp.sort((f, s)=>{
-        let fTime = formatDate(f.conclusionDate).getTime();
-        let sTime = formatDate(s.conclusionDate).getTime();
-        if(fTime < sTime) return -1;
-        if(fTime > sTime) return 1;
-        
-        return 0;
-    });
+    result.stockHistory.history = historyTemp.sort(historySort());
 
     let buyPrice = "0";
 
@@ -155,14 +150,7 @@ function adjustmentStockData(tempData : stocksData){
     result.financial.totalReturn = totalReturnTemp;
 
     //내림차순으로 정렬
-    result.stockHistory.history = historyTemp.sort((f, s)=>{
-        let fTime = formatDate(f.conclusionDate).getTime();
-        let sTime = formatDate(s.conclusionDate).getTime();
-        if(fTime < sTime) return 1;
-        if(fTime > sTime) return -1;
-        
-        return 0;
-    });
+    result.stockHistory.history = historyTemp.sort(historySort(sortType.desc));
 
     //평단가 계산
     result.stockState.flatPrice = cutPoint(
@@ -269,8 +257,8 @@ function initStockList(temp : stocksDataList, stockKey : string){
         financial : {
             totalPrice : "0",
             buyFirstTime : dateToString(new Date()),
-            installmentSavingRate : "0",
-            depositsRate : "0",
+            interestInstallmentSaving : "0",
+            interestDeposits : "0",
             totalReturn : "0",
             totalDividend : "0"
         },

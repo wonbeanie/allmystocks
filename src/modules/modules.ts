@@ -1,6 +1,10 @@
-import { calculator } from "./stock/stockTypes";
+import { sortType } from "./modulesType";
+import { calculator, history } from "./stock/stockTypes";
 
-export function calStringToNumber(first : string | number, second : string | number, type : calculator = calculator.PLUS){
+export function calStringToNumber(
+    first : string | number, second : string | number,
+    type : calculator = calculator.PLUS, comma : boolean = true
+){
     let result = 0;
     let f = typeof first === "string" ? Number(delComma(first)) : first;
     let s = typeof second === "string" ? Number(delComma(second)) : second;
@@ -20,11 +24,11 @@ export function calStringToNumber(first : string | number, second : string | num
             break;
     }
 
-    return formatComma(result);
+    return comma ? formatComma(result) : result.toString();
 }
 
 export function cutPoint(num : string | number, digits : number = 0){
-    let n = typeof num === "string" ? Number(delComma(num)) : num;  
+    let n = typeof num === "string" ? Number(delComma(num)) : num;
     return formatComma(Math.floor(n * (10**digits)) / (10**digits));
 }
 
@@ -92,4 +96,22 @@ export function delComma(str : string){
 
 export function formatComma(str : number){
     return str.toLocaleString();
+}
+
+export function historySort(type : sortType = sortType.asc){
+    let fDataNum = 1;
+    let nDataNum = -1;
+    if(type === sortType.asc){
+        fDataNum = -1;
+        nDataNum = 1;
+    }
+
+    return (f : history, s : history) : number => {
+        let fTime = formatDate(f.conclusionDate).getTime();
+        let sTime = formatDate(s.conclusionDate).getTime();
+        if(fTime < sTime) return fDataNum;
+        if(fTime > sTime) return nDataNum;
+        
+        return 0;
+    }
 }
