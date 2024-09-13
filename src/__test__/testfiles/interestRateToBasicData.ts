@@ -234,7 +234,7 @@ export default {
         financial : {
             totalPrice : "1,421,600",
             buyFirstTime : "2022.03.17 (17:25:53)",
-            interestInstallmentSaving : "49,718.11",
+            interestInstallmentSaving : "49,718.1",
             interestDeposits : "91,515.72",
             totalReturn : "5,292",
             totalDividend : "5,292"
