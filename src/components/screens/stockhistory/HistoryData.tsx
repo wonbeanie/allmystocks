@@ -15,6 +15,9 @@ export default function HistoryData() {
             <td>
                 -
             </td>
+            <td>
+                외화증권매수
+            </td>
         </tr>
     )
 }

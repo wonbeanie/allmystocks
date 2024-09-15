@@ -21,6 +21,37 @@ export default function DataSet() {
                     <TextInput placeholder='ex) HGKEfgkgjhg7sGwhjeGfkfjfjGjW5EDhDgb…' />
                 </InputBox>
             </InputContainer>
+
+            <InterestRateBox>
+                <InputContainer css={{
+                    marginRight : 10
+                }}>
+                    <NameBox>
+                        예금 금리
+                    </NameBox>
+                    <InputBox>
+                        <TextInput placeholder='ex) 3.8' />
+                    </InputBox>
+                </InputContainer>
+                <InputContainer>
+                    <NameBox>
+                        적금 금리
+                    </NameBox>
+                    <InputBox>
+                        <TextInput placeholder='ex) 4.2' />
+                    </InputBox>
+                </InputContainer>
+            </InterestRateBox>
+
+            <InputContainer>
+                <NameBox>
+                    환율
+                </NameBox>
+                <InputBox>
+                    <TextInput placeholder='ex) 1,328' />
+                </InputBox>
+            </InputContainer>
+
             <DataFileInput />
         </Container>
     )
@@ -28,6 +59,11 @@ export default function DataSet() {
 
 const Container = styled.div`
     margin-bottom : 20px;
+`;
+
+const InterestRateBox = styled.div`
+    display: flex;
+    flex-direction: row;
 `;
 
 const InputBox = styled.div`

@@ -31,7 +31,7 @@ export default function FinancialDetails() {
             </InfoBox>
             <InfoBox>
                 <InfoName>
-                    평균 배당금
+                    총 배당금
                 </InfoName>
                 <InfoValue>
                     40,000

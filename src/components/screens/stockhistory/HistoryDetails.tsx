@@ -23,6 +23,9 @@ export default function HistoryDetails() {
                     <th>
                         손익
                     </th>
+                    <th>
+                        유형
+                    </th>
                 </thead>
                 <tbody>
                     <HistoryData />
@@ -41,6 +44,9 @@ export default function HistoryDetails() {
                         }}>
                             215,213
                         </td>
+                        <td>
+                            외화증권매도
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -56,6 +62,9 @@ export default function HistoryDetails() {
                             color : "#0000ff"
                         }}>
                             - 215,213
+                        </td>
+                        <td>
+                            외화증권매도
                         </td>
                     </tr>
                 </tbody>

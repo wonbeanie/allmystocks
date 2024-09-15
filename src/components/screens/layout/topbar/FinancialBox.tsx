@@ -11,6 +11,9 @@ export default function FinancialBox() {
             <div css={marginBottom}>
                 적금 금리 : 4.2%
             </div>
+            <div css={marginBottom}>
+                환율 : 1,328원
+            </div>
             <div>
                 <Button>
                     데이터 설정
