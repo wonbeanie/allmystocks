@@ -20,12 +20,12 @@ export default {
             retentionTime : "1년 2개월",
             amount : "3",
             buyFirstTime : "2023.07.05 (12:56:55)",
-            currentPrice : "44.95"
+            currentPrice : "0"
         },
         stockHistory : {
             totalPricePercent : "2.98",
             totalReturn : "0",
-            currentPrice : "44.95",
+            currentPrice : "0",
             history : [
                 {
                     conclusionAmount : "122",

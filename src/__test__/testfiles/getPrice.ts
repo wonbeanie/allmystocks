@@ -1,7 +1,7 @@
 export default () => {
     return {
         "Financial Select Sector SPDR ETF US81369Y6059" : {
-            "stck_prpr": "44.95"
+            "stck_prpr": "0"
         },
         "iShares Expanded Tech Sector ETF US4642875490" : {
             "stck_prpr": "86.90"
