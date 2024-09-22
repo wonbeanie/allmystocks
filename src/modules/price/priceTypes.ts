@@ -5,3 +5,11 @@ export interface priceResData {
 export interface priceList {
     [key : string] : priceResData
 }
+
+export interface usCodeFilesType {
+    [key : string] : string
+}
+
+export interface usCodeListType {
+    [key : string] : object
+}
