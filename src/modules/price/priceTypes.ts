@@ -11,5 +11,9 @@ export interface usCodeFilesType {
 }
 
 export interface usCodeListType {
-    [key : string] : object
+    [key : string] : usCodeType
+}
+
+export interface usCodeType {
+    [key : string] : string
 }

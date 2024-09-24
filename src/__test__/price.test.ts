@@ -1,4 +1,6 @@
-import { calPriceToStockData } from "../modules/price/price";
+import { calPriceToStockData, getUsStockInfo, transUsCodeFile, transUsStockInfo } from "../modules/price/price";
+import { usCodeListType } from "../modules/price/priceTypes";
+import { amsCode, nasCode, nysCode } from "../modules/price/uscodefile/usCodeFiles";
 import { stocksData } from "../modules/stock/stockTypes";
 import test from "../modules/test";
 import basicData from "./testfiles/basicData";
@@ -18,4 +20,26 @@ describe('주식 가격 api 데이터 변환 데스트', () => {
         
         expect(basicDataTemp).toEqual(priceToBasicData);
     });
+
+    it('미국 주식 거래소별 코드 가져오기', () => {
+        let data = {
+            "AMS" : amsCode,
+            "NAS" : nasCode,
+            "NYS" : nysCode
+        }
+        let usCodeList : usCodeListType = {};
+
+        usCodeList = transUsCodeFile(data);
+
+        let result = transUsStockInfo("iShares Expanded Tech Sector ETF", usCodeList);        
+        
+        expect(result).toEqual({
+            EXCD : "AMS",
+            SYMB : "IGM",
+        });
+    });
 });
+
+
+
+// 테스트코드 확인
