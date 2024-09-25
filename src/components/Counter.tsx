@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { counterActions, selectCount } from '../redux/slice/counter';
 import { fetchToken } from '../redux/slice/stockApi';
 import axios from 'axios';
+import ApiService from '../modules/api/ApiService';
 
 const Counter = () => {
   const counter = useAppSelector(selectCount);
@@ -19,9 +20,21 @@ const Counter = () => {
     dispatch(counterActions.sub(10));
   };
 
-  const apiHandler = () => {
-    dispatch(fetchToken({appKey, appSecret}));
-    console.log(items, status, error);
+  const apiHandler = async () => {
+    try {
+        // let res = await ApiService.getStockPrice("005935");
+        let res = await ApiService.getUsStock("iShares Expanded Tech Sector ETF");
+        console.log(res);
+    } catch (err) {
+        console.log(err);
+    }
+    // dispatch(fetchToken());
+    // console.log(items, status, error);
+  }
+
+  const setKey = () => {
+    console.log({appKey, appSecret});
+    ApiService.setKeys({appKey, appSecret});
   }
 
   const onAppKey = (e : any) => {
@@ -31,6 +44,10 @@ const Counter = () => {
   const onAppSecret = (e : any) => {
     setAppSecret(e.target.value)
   }
+
+  useEffect(()=>{
+
+  },[])
 
   return (
     <div>
@@ -42,7 +59,10 @@ const Counter = () => {
         <br/>
         <input onChange={onAppKey} placeholder='appKey' />
         <input onChange={onAppSecret} placeholder='appSecret' />
-        <button onClick={apiHandler}>Click</button>
+        <button onClick={setKey}>Set Keys</button>
+
+        <br/>
+        <button onClick={apiHandler}>Request</button>
       </div>
     </div>
   );
