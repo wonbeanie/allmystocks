@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { InputContainer, NameBox } from '../../../../css/screens/layout/modal';
+import { InputContainer, NameBox, TextInput } from '../../../../css/screens/layout/modal';
 import DataFileInput from './DataFileInput';
 
 export default function DataSet() {
@@ -70,12 +70,4 @@ const InputBox = styled.div`
     flex: 1;
     border : 1px solid #000000;
     padding : 5px 0;
-`;
-
-const TextInput = styled.input`
-    width: 100%;
-    border : unset;
-    margin : unset;
-    padding : unset;
-    text-align: center;
 `;

@@ -7,6 +7,11 @@ export default function Navigate() {
             <Btn css={{
                 marginRight : 10
             }}>
+                현재가 변경
+            </Btn>
+            <Btn css={{
+                marginRight : 10
+            }}>
                 과거내역
             </Btn>
             <Btn>

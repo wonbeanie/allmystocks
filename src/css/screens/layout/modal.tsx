@@ -20,3 +20,11 @@ export const InputBox = styled.div`
     border : 1px solid #000000;
     padding : 5px 0;
 `;
+
+export const TextInput = styled.input`
+    width: 100%;
+    border : unset;
+    margin : unset;
+    padding : unset;
+    text-align: center;
+`;
