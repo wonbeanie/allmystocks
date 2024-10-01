@@ -1,10 +1,18 @@
 import styled from '@emotion/styled';
-import React from 'react'
+import React, { useContext } from 'react'
+import { LayoutContext } from '../layout/LayoutContext';
+import ChangePriceModal from '../layout/ChangePriceModal';
 
 export default function Navigate() {
+    const layoutContext = useContext(LayoutContext);
+
+    const changeCurrentPrice = () => {
+        layoutContext.modalOpen(true, <ChangePriceModal />);
+    }
+
     return (
         <Container>
-            <Btn css={{
+            <Btn onClick={changeCurrentPrice} css={{
                 marginRight : 10
             }}>
                 현재가 변경

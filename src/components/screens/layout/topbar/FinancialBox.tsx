@@ -1,8 +1,16 @@
 import styled from '@emotion/styled';
-import React from 'react'
+import React, { useContext } from 'react'
 import { marginBottom } from '../../../../css/screens/layout';
+import { LayoutContext } from '../LayoutContext';
+import DataSetModal from '../DataSetModal';
 
 export default function FinancialBox() {
+    const layoutContext = useContext(LayoutContext);
+
+    const openDataSetModal = () => {
+        layoutContext.modalOpen(true, <DataSetModal />)
+    }
+
     return (
         <Container>
             <div css={marginBottom}>
@@ -15,7 +23,7 @@ export default function FinancialBox() {
                 환율 : 1,328원
             </div>
             <div>
-                <Button>
+                <Button onClick={openDataSetModal}>
                     데이터 설정
                 </Button>
             </div>

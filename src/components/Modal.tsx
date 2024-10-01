@@ -1,20 +1,30 @@
 import styled from '@emotion/styled'
-import React from 'react'
+import React, { useContext } from 'react'
+import { LayoutContext } from './screens/layout/LayoutContext'
 
-export default function Modal({children} : modalType) {
+export default function Modal({visible, children} : modalType) {
+    const layoutContext = useContext(LayoutContext);
+
+    const onClose = () => {
+        layoutContext.modalOpen(false);
+    }
+
     return (
-        <Container>
-            <Box>
-                <ExitBtn>
-                    X
-                </ExitBtn>
-                {children}
-            </Box>
-        </Container>
+        visible ? (
+            <Container>
+                <Box>
+                    <ExitBtn onClick={onClose}>
+                        X
+                    </ExitBtn>
+                    {children}
+                </Box>
+            </Container>
+        ) : <></>
     )
 }
 
 interface modalType {
+    visible : boolean,
     children ?: React.ReactNode
 }
 

@@ -1,13 +1,21 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { LayoutContext } from '../LayoutContext';
+import { useContext } from 'react';
 
 export default function ConfirmBtn() {
+    const layoutContext = useContext(LayoutContext);
+
+    const onClose = () => {
+        layoutContext.modalOpen(false);
+    }
+
     return (
         <Container>
             <Btn css={centerStyle} >
                 확인
             </Btn>
-            <Btn>
+            <Btn onClick={onClose}>
                 닫기
             </Btn>
         </Container>
