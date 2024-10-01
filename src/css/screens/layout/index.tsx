@@ -1,10 +1,15 @@
 import { css } from '@emotion/react';
 
-const container = css`
-    background-color: #ffffff;
-    font-size : 20px;
+export const container = css`
     border : 1px solid silver;
-    height : 100px;
+    max-width: 700px;
+    margin : 0 auto;
 `;
 
-export default container;
+export const marginBottom = css`
+    margin-bottom : 10px;
+`;
+
+export const textCenter = css`
+    text-align: center;
+`;
