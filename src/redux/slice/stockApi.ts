@@ -18,10 +18,9 @@ const initialState : initialStateType = {    // 초기 state(상태값) 설정
 
 // 비동기 작업을 처리하는 createAsyncThunk 생성
 export const fetchToken = createAsyncThunk<
-    any,
-    appKeysType
->('stock/token', async (appKeys : appKeysType) => {
-    const response = await ApiService.getStockApiAccessToken(appKeys);
+    any
+>('stock/token', async () => {
+    const response = await ApiService.getStockApiAccessToken();
 
     return response.data;
 });

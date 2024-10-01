@@ -7,7 +7,8 @@
     "dev": "webpack-dev-server --mode=development --open --hot --progress",
     "start": "webpack --mode=development --progress",
     "build": "webpack --mode=production --progress",
-    "test": "jest"
+    "test": "jest",
+    "test-d": "jest --verbose"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
