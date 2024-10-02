@@ -5,7 +5,7 @@ import stockApiReducer from '../slice/stockApi';
 const store = configureStore({
     reducer: {
     	counter: counterReducer, // 추가됨
-		  apiData : stockApiReducer
+		apiData : stockApiReducer
     },
 });
 

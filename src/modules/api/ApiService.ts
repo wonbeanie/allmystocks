@@ -19,8 +19,6 @@ class ApiService {
         }
 
         this.apiInterceptorsSetting();
-
-        console.log(this);
     }
 
     //api 공통 로직 설정

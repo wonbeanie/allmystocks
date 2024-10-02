@@ -21,7 +21,23 @@ export const fetchToken = createAsyncThunk<
     any
 >('stock/token', async () => {
     const response = await ApiService.getStockApiAccessToken();
+    console.log(response);
+    return response.data;
+});
 
+export const fetchStockPrice = createAsyncThunk<
+    any,
+    any
+>('stock/price', async (stockId : string) => {
+    const response = await ApiService.getStock(stockId);
+    return response.data;
+});
+
+export const fetchUsStockPrice = createAsyncThunk<
+    any,
+    any
+>('stock/us-price', async (stockName : string) => {
+    const response = await ApiService.getUsStock(stockName);
     return response.data;
 });
 
@@ -32,18 +48,19 @@ const stockApiSlice = createSlice({
     reducers: {}, // 동기적 처리를 하는 곳 cf)
     extraReducers: (builder) => {
         builder
-            .addCase(fetchToken.pending, (state) => {
-            // 1. 비동기 작업이 시작될 때의 액션
-                state.status = 'loading';
-                console.log("loading")
-            })
-            .addCase(fetchToken.fulfilled, (state, action) => {
+            .addCase(fetchStockPrice.fulfilled, (state, action) => {
               // 2. 비동기 작업이 성공적으로 완료된 경우의 액션
                 state.status = 'succeeded';
                 state.items = action.payload;  // 타 서버에서 가져온 내용을 통신소 DB에 저장
                 console.log("succeeded")
             })
-            .addCase(fetchToken.rejected, (state, action) => {
+            .addCase(fetchUsStockPrice.fulfilled, (state, action) => {
+              // 2. 비동기 작업이 성공적으로 완료된 경우의 액션
+                state.status = 'succeeded';
+                state.items = action.payload;  // 타 서버에서 가져온 내용을 통신소 DB에 저장
+                console.log("succeeded")
+            })
+            .addCase(fetchStockPrice.rejected, (state, action) => {
               // 3. 비동기 작업이 실패한 경우의 액션
                 state.status = 'failed';
                 // state.error = action.error.message;
