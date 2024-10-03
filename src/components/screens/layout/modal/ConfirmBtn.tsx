@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { LayoutContext } from '../LayoutContext';
 import { useContext } from 'react';
 
-export default function ConfirmBtn() {
+export default function ConfirmBtn({onConfirm = () => {}} : confirmBtnProps) {
     const layoutContext = useContext(LayoutContext);
 
     const onClose = () => {
@@ -12,7 +12,7 @@ export default function ConfirmBtn() {
 
     return (
         <Container>
-            <Btn css={centerStyle} >
+            <Btn css={centerStyle} onClick={onConfirm}>
                 확인
             </Btn>
             <Btn onClick={onClose}>
@@ -40,3 +40,7 @@ const Btn = styled.div`
 const centerStyle = css`
     margin-right : 10px;
 `;
+
+interface confirmBtnProps {
+    onConfirm ?: () => void
+}
