@@ -20,14 +20,26 @@ const initialState: basicInfoState = {
     totalReturnRate : "0"
 }
 
+export const BASE_INFO_STROAGE_KEY = "dataConfig";
+
 export const basicinfoSlice = createSlice({
-    name: 'counter',
+    name: 'basicInfo',
     initialState,
     reducers: {
+        setInit : (state) => {
+            let data = JSON.parse(localStorage.getItem(BASE_INFO_STROAGE_KEY) || "{}");
+
+            state.depositsRate = data.depositsRate;
+            state.installmentSavingRate = data.installmentSavingRate;
+            state.exchangeUSRate = data.exchangeUSRate;
+        },
         setDataConfig: (state, action: PayloadAction<dataConfigPayload>) => {
-            state.depositsRate = action.payload.depositRate;
-            state.installmentSavingRate = action.payload.installmentSavingRate;
-            state.exchangeUSRate = action.payload.exchangeUSRate;
+            let config = action.payload;
+            state.depositsRate = config.depositsRate;
+            state.installmentSavingRate = config.installmentSavingRate;
+            state.exchangeUSRate = config.exchangeUSRate;
+
+            localStorage.setItem(BASE_INFO_STROAGE_KEY, JSON.stringify(config));
         },
         sub: (state, action: PayloadAction<number>) => {
             // state.counter -= action.payload;
@@ -40,7 +52,9 @@ export const getBasicInfo = (state: RootState) => state.basicInfo; // 추가
 export default basicinfoSlice.reducer;
 
 export interface dataConfigPayload {
-    depositRate : string;
+    appKey : string;
+    appSecret : string;
+    depositsRate : string;
     installmentSavingRate : string;
     exchangeUSRate : string;
 }

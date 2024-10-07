@@ -4,7 +4,7 @@ import DataFileInput from './DataFileInput';
 import { useState } from 'react';
 import { delComma, formatComma } from '../../../../modules/modules';
 
-export default function DataSet({dataConfig, setDataConfig} : dataSetConfigProps) {
+export default function DataSet({dataState, setDataState} : dataSetConfigProps) {
     const [exchangeUsRate, setExchangeUsRate] = useState("");
 
     const changeAppKey = (e : any) => {
@@ -24,6 +24,7 @@ export default function DataSet({dataConfig, setDataConfig} : dataSetConfigProps
     }
 
     const changeExchangeUsRate = (e : any) => {
+        //천의 자리 콤마 변환
         let value = delComma(e.target.value);
         value = formatComma(Number(value));
 
@@ -31,10 +32,18 @@ export default function DataSet({dataConfig, setDataConfig} : dataSetConfigProps
         changeDataConfig(dataConfigEnum.EXCHANGE_US_RATE, value);
     }
 
+    //부모 컴포넌트에 데이터 전달
     const changeDataConfig = (key : dataConfigEnum, value : string) => {
-        let dataConfigTemp = {...dataConfig}
+        let dataConfigTemp = {...dataState}
         dataConfigTemp[key] = value;
-        setDataConfig(dataConfigTemp)
+        setDataState(dataConfigTemp)
+    }
+
+    //부모 컴포넌트에 데이터 전달
+    const changeFiles = (files : File[]) => {
+        let dataConfigTemp = {...dataState}
+        dataConfigTemp[FILES_KEY] = files;
+        setDataState(dataConfigTemp)
     }
 
     return (
@@ -86,7 +95,7 @@ export default function DataSet({dataConfig, setDataConfig} : dataSetConfigProps
                 </InputBox>
             </InputContainer>
 
-            <DataFileInput />
+            <DataFileInput files={dataState.files} changeFiles={changeFiles} />
         </Container>
     )
 }
@@ -107,12 +116,18 @@ const InputBox = styled.div`
 `;
 
 interface dataSetConfigProps {
-    dataConfig : dataConfigType,
-    setDataConfig : (dataConfig : dataConfigType) => void
+    dataState : dataSetStateType,
+    setDataState : (dataState : dataSetStateType) => void
 }
 
 type dataConfigType = {
     [key in dataConfigEnum]: string;
+}
+
+export const FILES_KEY = "files";
+
+export interface dataSetStateType extends dataConfigType {
+    [FILES_KEY] : File[];
 }
 
 const enum dataConfigEnum {

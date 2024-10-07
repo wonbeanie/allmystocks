@@ -1,23 +1,33 @@
 import styled from '@emotion/styled';
-import React from 'react'
+import { fileListType } from './DataFileInput';
 
-export default function DataFileList() {
+export default function DataFileList({fileList, removeFile} : datafileListProps) {
+
+    //제거 버튼 클릭시
+    const onDelete = (num : number) => {
+        return ()=>{
+            //부모 컴포넌트의 제거 기능 호출
+            removeFile(num)
+        };
+    }
+
     return (
         <Conatiner>
-            <Box css={{
-                marginBottom: 10
-            }}>
-                <DeleteBtn>
-                    X
-                </DeleteBtn>
-                종합거래내역_이름_24_0702_1009.CSV
-            </Box>
-            <Box>
-                <DeleteBtn>
-                    X
-                </DeleteBtn>
-                종합거래내역_이름_24_1010_1228.CSV
-            </Box>
+            {
+                Object.keys(fileList).map((key, num)=>{
+                    let marginBottom = num === fileList.length - 1 ? 0 : 10;
+                    return (
+                        <Box css={{
+                            marginBottom
+                        }}>
+                            <DeleteBtn onClick={onDelete(num)}>
+                                X
+                            </DeleteBtn>
+                            {key}
+                        </Box>
+                    )
+                })
+            }
         </Conatiner>
     )
 }
@@ -41,3 +51,8 @@ const DeleteBtn = styled.button`
     background: unset;
     border : 1px solid #000000;
 `;
+
+interface datafileListProps {
+    fileList : fileListType;
+    removeFile : (num : number)=>void
+}
