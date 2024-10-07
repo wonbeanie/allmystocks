@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from '../slice/counter';
 import stockApiReducer from '../slice/stockApi';
 import basicInfoReducer from '../slice/basicInfo';
+import baseDataReducer from '../slice/baseDataList';
 
 const store = configureStore({
     reducer: {
     	counter: counterReducer, // 추가됨
 		apiData : stockApiReducer,
-        basicInfo : basicInfoReducer
+        basicInfo : basicInfoReducer,
+        baseDataList : baseDataReducer
     },
 });
 
