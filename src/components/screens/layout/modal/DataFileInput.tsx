@@ -6,6 +6,7 @@ import DataFileList from './DataFileList';
 import fileImport from '../../../../modules/fileImport';
 import { useAppDispatch } from '../../../../redux/hooks';
 import { basicDataListActions } from '../../../../redux/slice/baseDataList';
+import { fileListType } from './modalTypes';
 
 export default function DataFileInput({files, changeFiles} : dataFileInputProps) {
     const [fileList, setFileList] = useState<fileListType>({});
@@ -72,10 +73,6 @@ const FileLabel = styled.label`
 const FileInput = styled.input`
     display: none;
 `;
-
-export interface fileListType {
-    [key : string] : number
-}
 
 interface dataFileInputProps {
     files : File[];

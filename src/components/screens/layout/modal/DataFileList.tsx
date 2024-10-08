@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { fileListType } from './DataFileInput';
+import { fileListType } from './modalTypes';
 
 export default function DataFileList({fileList, removeFile} : datafileListProps) {
 

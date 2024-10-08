@@ -3,6 +3,7 @@ import { InputContainer, NameBox, TextInput } from '../../../../css/screens/layo
 import DataFileInput from './DataFileInput';
 import { useState } from 'react';
 import { delComma, formatComma } from '../../../../modules/modules';
+import { dataConfigEnum, dataSetStateType, FILES_KEY } from './modalTypes';
 
 export default function DataSet({dataState, setDataState} : dataSetConfigProps) {
     const [exchangeUsRate, setExchangeUsRate] = useState("");
@@ -118,22 +119,4 @@ const InputBox = styled.div`
 interface dataSetConfigProps {
     dataState : dataSetStateType,
     setDataState : (dataState : dataSetStateType) => void
-}
-
-type dataConfigType = {
-    [key in dataConfigEnum]: string;
-}
-
-export const FILES_KEY = "files";
-
-export interface dataSetStateType extends dataConfigType {
-    [FILES_KEY] : File[];
-}
-
-const enum dataConfigEnum {
-    APPKEY = "appKey",
-    APPSECRET = "appSecret",
-    DEPOSITS_RATE = "depositsRate",
-    INSTALLMENT_SAVEING_RATE = "installmentSavingRate",
-    EXCHANGE_US_RATE = "exchangeUSRate"
 }

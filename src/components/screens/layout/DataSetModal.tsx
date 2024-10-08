@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import ConfirmBtn from './modal/ConfirmBtn'
-import DataSet, { dataSetStateType } from './modal/DataSet'
+import DataSet from './modal/DataSet'
 import { useAppDispatch } from '../../../redux/hooks';
 import { basicInfoActions } from '../../../redux/slice/basicInfo';
 import fileImport from '../../../modules/fileImport';
 import { basicDataListActions } from '../../../redux/slice/baseDataList';
+import { dataSetStateType, FILES_KEY } from './modal/modalTypes';
 
 export default function DataSetModal() {
     const dispatch = useAppDispatch();
@@ -32,7 +33,7 @@ export default function DataSetModal() {
 }
 
 const initData : dataSetStateType =  {
-    files : [],
+    [FILES_KEY] : [],
     appKey : "",
     appSecret : "",
     depositsRate : "",
