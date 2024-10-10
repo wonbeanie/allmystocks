@@ -4,47 +4,60 @@ import { textCenter } from '../../../../css/screens/layout'
 import styled from '@emotion/styled';
 import DataFileList from './DataFileList';
 import fileImport from '../../../../modules/fileImport';
-import { useAppDispatch } from '../../../../redux/hooks';
-import { basicDataListActions } from '../../../../redux/slice/baseDataList';
+import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
+import { basicDataListActions, getBaseDataList } from '../../../../redux/slice/baseDataList';
 import { fileListType } from './modalTypes';
+import JSZip from 'jszip';
+import { fileDateSort } from '../../../../modules/modules';
 
 export default function DataFileInput({files, changeFiles} : dataFileInputProps) {
     const [fileList, setFileList] = useState<fileListType>({});
+    const baseDataList = useAppSelector(getBaseDataList);
+    const [existsFile, setExistsFile] = useState(false);
 
-    //화면에서 받은 파일 배열로 변환뒤
+    //데이터가 존재하는지 체크
+    useEffect(()=>{
+        let dataCheck = Object.keys(baseDataList.data).length > 0;
+        setExistsFile(dataCheck ? true : false);
+    },[baseDataList])
+
+    //화면에서 받은 zip파일을 blob[]으로 변환뒤
     //상위 컴포넌트(DataSetModal)로 데이터 전달
-    const onFiles = (e : any) => {
+    const onFiles = async (e : any) => {
+        //압축해제를 위해 jszip 라이브러리 사용
+        let zip = new JSZip();
+
+        //압축 해제
+        let unZipFiles = await zip.loadAsync(e.target.files[0])
+
+        let blobList : Promise<Blob>[] = [];
+
+        Object.keys(unZipFiles.files).forEach((key)=>{
+            //blob으로 변환하기 위해 promise[]로 저장
+            blobList.push(unZipFiles.files[key].async("blob"));
+        })
+
+        //blob으로 변환
+        let list = await Promise.all(blobList)
+
         let fileList : fileListType = {};
-        let data = [...e.target.files];
 
         //입력된 파일을 보여줘야 되기 때문에
         //파일이름과 수정을 위한 위치값 저장
-        data.forEach((file : any, num : number)=>{
-            fileList[file.name] = num;
-        });
+        fileList[e.target.files[0].name] = 0;
 
         setFileList(fileList);
         //데이터 전달
-        changeFiles(data);
+        changeFiles(list);
     }
 
     //파일 제거
-    const removeFile = (num : number) => {
-        let fileList : fileListType = {};
-        let filesTemp : File[] = [];
+    const removeFile = () => {
+        changeFiles([]);
+        setFileList({});
 
-        //위치값이용하여 파일 제거
-        files.forEach((file : File, i : number)=>{
-            if(num === i){
-                return;
-            }
-
-            filesTemp.push(file);
-            fileList[file.name] = filesTemp.length-1;
-        });
-
-        changeFiles(filesTemp);
-        setFileList(fileList);
+        //데이터 삭제 요청했기때문에
+        setExistsFile(false);
     }
 
     return (
@@ -54,10 +67,20 @@ export default function DataFileInput({files, changeFiles} : dataFileInputProps)
                     데이터 파일
                 </NameBox>
                 <InputBox css={textCenter}>
-                    <FileLabel htmlFor="file-input">
-                        찾기
-                    </FileLabel>
-                    <FileInput id="file-input" type="file" multiple onChange={onFiles}/>
+                {
+                    existsFile ? (
+                        <DeleteFileBox onClick={removeFile}>
+                            데이터 삭제
+                        </DeleteFileBox>
+                    ) : (
+                        <>
+                            <FileLabel htmlFor="file-input">
+                                찾기
+                            </FileLabel>
+                            <FileInput id="file-input" type="file" onChange={onFiles}/>
+                        </>
+                    )
+                }
                 </InputBox>
             </InputContainer>
             <DataFileList fileList={fileList} removeFile={removeFile}/>
@@ -74,7 +97,11 @@ const FileInput = styled.input`
     display: none;
 `;
 
+const DeleteFileBox = styled.input`
+
+`;
+
 interface dataFileInputProps {
-    files : File[];
-    changeFiles : (files : File[]) => void;
+    files : Blob[];
+    changeFiles : (files : Blob[]) => void;
 }

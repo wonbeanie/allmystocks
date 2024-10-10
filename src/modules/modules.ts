@@ -1,6 +1,7 @@
 import { sortType } from "./modulesType";
 import { calculator, history } from "./stock/stockTypes";
 
+//string or number 타입을 구분하지 않고 계산하는 함수
 export function calStringToNumber(
     first : string | number, second : string | number,
     type : calculator = calculator.PLUS, comma : boolean = true
@@ -27,11 +28,13 @@ export function calStringToNumber(
     return comma ? formatComma(result) : result.toString();
 }
 
+//소수점 제거 함수
 export function cutPoint(num : string | number, digits : number = 0){
     let n = typeof num === "string" ? Number(delComma(num)) : num;
     return formatComma(Math.floor(n * (10**digits)) / (10**digits));
 }
 
+//날짜간의 차이를 구해서 년, 개월, 일로 변환하는 함수
 export function calDiffDate(start ?: string, end ?: string){
     let s = formatDate(start);
     let e = formatDate(end);
@@ -80,24 +83,31 @@ export function calDiffDate(start ?: string, end ?: string){
     return result;
 }
 
+//tsv에서 나온 날짜데이터을 Date 형식으로 반환하는 함수
+//파라미터가 없다면 당일의 Date 반환
 export function formatDate(date ?: string){
     return date ? new Date(date.replace(/[()]/gi,"")) : new Date();
 }
 
+//tsv에서 사용한 날짜 형식으로 변환하는 함수
+//YYYY.MM.DD hh:mm:ss
 export function dateToString(date : Date){
     let offset = date.getTimezoneOffset() * 60000;
     let result = new Date(date.getTime() - offset);
     return result.toISOString().replace("T", " ").split(".")[0].replace(/-/gi, ".");
 }
 
+//콤마를 삭제하는 함수
 export function delComma(str : string){
     return str.replace(/,/gi,"");
 }
 
+//천자리마다 콤마를 넣는 함수
 export function formatComma(str : number){
     return str.toLocaleString();
 }
 
+//과거내역 거래일자순으로 정렬 함수
 export function historySort(type : sortType = sortType.asc){
     let fDataNum = 1;
     let nDataNum = -1;
@@ -114,4 +124,11 @@ export function historySort(type : sortType = sortType.asc){
         
         return 0;
     }
+}
+
+//파일 날짜순으로 정렬 함수
+export function fileDateSort(a : any, b : any){
+    let aTime = new Date(a["거래일자"]).getTime();
+    let bTime = new Date(b["거래일자"]).getTime()
+    return bTime - aTime;
 }

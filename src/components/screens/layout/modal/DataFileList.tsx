@@ -4,11 +4,8 @@ import { fileListType } from './modalTypes';
 export default function DataFileList({fileList, removeFile} : datafileListProps) {
 
     //제거 버튼 클릭시
-    const onDelete = (num : number) => {
-        return ()=>{
-            //부모 컴포넌트의 제거 기능 호출
-            removeFile(num)
-        };
+    const onDelete = () => {
+        removeFile();
     }
 
     return (
@@ -20,7 +17,7 @@ export default function DataFileList({fileList, removeFile} : datafileListProps)
                         <Box css={{
                             marginBottom
                         }}>
-                            <DeleteBtn onClick={onDelete(num)}>
+                            <DeleteBtn onClick={onDelete}>
                                 X
                             </DeleteBtn>
                             {key}
@@ -54,5 +51,5 @@ const DeleteBtn = styled.button`
 
 interface datafileListProps {
     fileList : fileListType;
-    removeFile : (num : number)=>void
+    removeFile : ()=>void
 }

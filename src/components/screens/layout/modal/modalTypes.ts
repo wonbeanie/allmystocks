@@ -1,7 +1,7 @@
 export const FILES_KEY = "files";
 
 export interface dataSetStateType extends dataConfigType {
-    [FILES_KEY] : File[];
+    [FILES_KEY] : Blob[];
 }
 
 type dataConfigType = {

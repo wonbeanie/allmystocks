@@ -1,12 +1,17 @@
 import styled from '@emotion/styled'
 import { InputContainer, NameBox, TextInput } from '../../../../css/screens/layout/modal';
 import DataFileInput from './DataFileInput';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { delComma, formatComma } from '../../../../modules/modules';
 import { dataConfigEnum, dataSetStateType, FILES_KEY } from './modalTypes';
 
 export default function DataSet({dataState, setDataState} : dataSetConfigProps) {
-    const [exchangeUsRate, setExchangeUsRate] = useState("");
+    const [exchangeUsRate, setExchangeUsRate] = useState(dataState.exchangeUSRate);
+
+    //dateState가 변경됐을때 데이터 변경을 위해
+    useEffect(()=>{
+        setExchangeUsRate(dataState.exchangeUSRate);
+    },[dataState])
 
     const changeAppKey = (e : any) => {
         changeDataConfig(dataConfigEnum.APPKEY, e.target.value)
@@ -41,7 +46,7 @@ export default function DataSet({dataState, setDataState} : dataSetConfigProps) 
     }
 
     //부모 컴포넌트에 데이터 전달
-    const changeFiles = (files : File[]) => {
+    const changeFiles = (files : Blob[]) => {
         let dataConfigTemp = {...dataState}
         dataConfigTemp[FILES_KEY] = files;
         setDataState(dataConfigTemp)
@@ -54,7 +59,7 @@ export default function DataSet({dataState, setDataState} : dataSetConfigProps) 
                     appkey
                 </NameBox>
                 <InputBox>
-                    <TextInput placeholder='ex) hkeGH37HGDKQgvghwj5dBmFKGNvvSGR…' onChange={changeAppKey}/>
+                    <TextInput value={dataState.appKey} placeholder='ex) hkeGH37HGDKQgvghwj5dBmFKGNvvSGR…' onChange={changeAppKey}/>
                 </InputBox>
             </InputContainer>
             <InputContainer>
@@ -62,7 +67,7 @@ export default function DataSet({dataState, setDataState} : dataSetConfigProps) 
                     appsecret
                 </NameBox>
                 <InputBox>
-                    <TextInput placeholder='ex) HGKEfgkgjhg7sGwhjeGfkfjfjGjW5EDhDgb…' onChange={changeAppSecret}/>
+                    <TextInput value={dataState.appSecret} placeholder='ex) HGKEfgkgjhg7sGwhjeGfkfjfjGjW5EDhDgb…' onChange={changeAppSecret}/>
                 </InputBox>
             </InputContainer>
 
@@ -74,7 +79,7 @@ export default function DataSet({dataState, setDataState} : dataSetConfigProps) 
                         예금 금리
                     </NameBox>
                     <InputBox>
-                        <TextInput placeholder='ex) 3.8' onChange={changeDepositsRate}/>
+                        <TextInput value={dataState.depositsRate} placeholder='ex) 3.8' onChange={changeDepositsRate}/>
                     </InputBox>
                 </InputContainer>
                 <InputContainer>
@@ -82,7 +87,7 @@ export default function DataSet({dataState, setDataState} : dataSetConfigProps) 
                         적금 금리
                     </NameBox>
                     <InputBox>
-                        <TextInput placeholder='ex) 4.2' onChange={changeInstallmentSavingRate}/>
+                        <TextInput value={dataState.installmentSavingRate} placeholder='ex) 4.2' onChange={changeInstallmentSavingRate}/>
                     </InputBox>
                 </InputContainer>
             </InterestRateBox>
