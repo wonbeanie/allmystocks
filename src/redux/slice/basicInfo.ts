@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
+import AppKeys from '../../modules/AppKeys';
 
 interface basicInfoState {
     totalInputAmount : string;
@@ -40,6 +41,13 @@ export const basicinfoSlice = createSlice({
             state.exchangeUSRate = config.exchangeUSRate;
 
             localStorage.setItem(BASE_INFO_STROAGE_KEY, JSON.stringify(config));
+
+            let appKeys = {
+                appKey : action.payload.appKey,
+                appSecret : action.payload.appSecret
+            };
+
+            AppKeys.setKeys(appKeys);
         },
         sub: (state, action: PayloadAction<number>) => {
             // state.counter -= action.payload;
