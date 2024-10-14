@@ -97,7 +97,7 @@ const FileInput = styled.input`
     display: none;
 `;
 
-const DeleteFileBox = styled.input`
+const DeleteFileBox = styled.div`
 
 `;
 
